@@ -19,7 +19,7 @@ vector_t *vector_new(size_t length) {
   return v;
 }
 
-vector_t *vector_new_view(linalg_t *parent, double *view, size_t length) {
+vector_t *vector_view(linalg_t *parent, double *view, size_t length) {
   vector_t *v = malloc(sizeof(vector_t));
   CHECK_MEMORY(v);
   DATA(v) = view;
@@ -79,7 +79,7 @@ vector_t *vector_linspace(size_t length, double min, double max) {
 vector_t *vector_slice(vector_t *v, size_t start, size_t end) {
   size_t length = end - start;
   double *start_ptr = DATA(v) + start;
-  vector_t *view = vector_new_view((linalg_t *)v, start_ptr, length);
+  vector_t *view = vector_view((linalg_t *)v, start_ptr, length);
   return view;
 }
 

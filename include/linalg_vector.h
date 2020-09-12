@@ -18,12 +18,12 @@ typedef struct {
 
 /** Returns a new vector. */
 vector_t* vector_new(size_t length);
-/** Returns a vector which is a view into an existing vector.
+/** Returns a new vector which is a view into an existing vector.
  *
  *  The new vector and its parent share the same data. Mutating
  *  the data in either one will mutate both. This avoids a copy.
  */
-vector_t* vector_new_view(linalg_t* parent, double* view, size_t length);
+vector_t* vector_view(linalg_t* parent, double* view, size_t length);
 /** Returns a vector with elements from an existing array. */
 vector_t* vector_from_array(double* data, size_t length);
 /** Frees the memory of a vector. */
@@ -79,7 +79,7 @@ double vector_norm(vector_t* v);
 /** Returns the string representation of vector `v`. */
 char* vector_to_string(vector_t* v);
 
-/** Returns true if vectors v1 and v2 are equivalent within a given tolerance.
+/** Returns true if vectors v1 and v2 are equal to within a given tolerance.
  */
 bool vector_equal(vector_t* v1, vector_t* v2, double tol);
 
