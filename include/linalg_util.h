@@ -7,6 +7,7 @@
 #include "linalg_error.h"
 
 #ifndef CHECK_MEMORY
+/** Raises LINALG_ALLOCATION_ERROR if `memory` is NULL. */
 #define CHECK_MEMORY(memory)                \
   {                                         \
     if ((void*)memory == NULL) {            \
@@ -16,6 +17,7 @@
 #endif
 
 #ifndef CHECK_REF_COUNT
+/** Raises LINALG_NONZERO_REFERENCE_ERROR if `obj` has more than 0 references to it. */
 #define CHECK_REF_COUNT(obj)                       \
   {                                                \
     if (REF_COUNT(obj) != 0) {                     \

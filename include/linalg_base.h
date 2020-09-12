@@ -8,6 +8,7 @@
 #include <stddef.h>   // size_t
 #include <stdlib.h>   // malloc
 
+/** Reference counted container object. */
 typedef struct linalg_t {
   bool owns_memory;
   struct linalg_t* memory_owner;
