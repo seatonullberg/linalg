@@ -162,16 +162,17 @@ double vector_dot(vector_t *v1, vector_t *v2) {
 double vector_norm(vector_t *v) { return sqrt(vector_dot(v, v)); }
 
 char *vector_to_string(vector_t *v) {
-  char *s;
-  char *str = malloc(sizeof(char) * 256);  // totally arbitrary buffer size
-  strcat(str, "[");
+  int bufsize = 256; // arbitrary buffer size
+  char s[bufsize];
+  char *str = malloc(bufsize);
+  strcpy(str, "[");
   size_t i;
   for (i = 0; i < v->length; i++) {
     sprintf(s, "%f", VECTOR_IDX_INTO(v, i));
-    if (i != v->length - 1) {
-      strcat(s, ", ");
-    }
     strcat(str, s);
+    if (i != v->length - 1) {
+      strcat(str, ", ");
+    }
   }
   strcat(str, "]");
   return str;

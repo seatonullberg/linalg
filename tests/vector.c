@@ -4,6 +4,7 @@
 #include <math.h>
 #include <string.h>
 
+#include "linalg_base.h"
 #include "linalg_vector.h"
 #include "utest.h"
 
@@ -41,6 +42,18 @@ UTEST(vector_tests, test_vector_linspace) {
   ASSERT_TRUE(vector_equal(v, target, 1.0e-6));
   vector_free(v);
   vector_free(target);
+}
+
+UTEST(vector_tests, test_vector_slice) {
+  double arr[] = {1.0, 1.0, 1.0};
+  vector_t* parent = vector_from_array(arr, 3);
+  ASSERT_EQ(REF_COUNT(parent), 0);
+  vector_t* child = vector_slice(parent, 0, 3);
+  ASSERT_EQ(REF_COUNT(parent), 1);
+  ASSERT_TRUE(vector_equal(parent, child, 1.0e-6));
+  vector_free(child);
+  ASSERT_EQ(REF_COUNT(parent), 0);
+  vector_free(parent);
 }
 
 UTEST(vector_tests, test_vector_add) {
